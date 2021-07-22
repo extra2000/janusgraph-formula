@@ -1,0 +1,41 @@
+{
+  "cniVersion": "0.4.0",
+  "name": "{{ JANUSGRAPH['pod']['network']['domain_name'] }}",
+  "plugins": [
+    {
+      "type": "bridge",
+      "bridge": "{{ JANUSGRAPH['pod']['network']['bridge'] }}",
+      "isGateway": true,
+      "ipMasq": true,
+      "hairpinMode": true,
+      "ipam": {
+        "type": "host-local",
+        "routes": [{ "dst": "0.0.0.0/0" }],
+        "ranges": [
+          [
+            {
+              "subnet": "{{ JANUSGRAPH['pod']['network']['subnet'] }}",
+              "gateway": "{{ JANUSGRAPH['pod']['network']['gateway'] }}"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "type": "portmap",
+      "capabilities": {
+        "portMappings": true
+      }
+    },
+    {
+      "type": "firewall"
+    },
+    {
+      "type": "tuning"
+    },
+    {
+      "type": "dnsname",
+      "domainName": "{{ JANUSGRAPH['pod']['network']['domain_name'] }}"
+    }
+  ]
+}

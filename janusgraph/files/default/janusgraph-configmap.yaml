@@ -1,0 +1,12 @@
+########################################################################
+# File managed by Salt at <{{ source }}>.
+# Your changes will be overwritten.
+########################################################################
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: janusgraph-configmap
+data:
+  janusgraph.janus_server_timeout: {{ JANUSGRAPH['janus_server_timeout'] }}
+  janusgraph.janus_storage_timeout: {{ JANUSGRAPH['janus_storage_timeout'] }}

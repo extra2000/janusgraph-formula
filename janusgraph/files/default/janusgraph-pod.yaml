@@ -1,0 +1,72 @@
+########################################################################
+# File managed by Salt at <{{ source }}>.
+# Your changes will be overwritten.
+########################################################################
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: {{ JANUSGRAPH['projectname'] }}-janusgraph-pod
+  name: {{ JANUSGRAPH['projectname'] }}-janusgraph-pod
+spec:
+  restartPolicy: {{ JANUSGRAPH['janusgraph']['restart_policy'] }}
+  containers:
+  - name: srv01
+    image: {{ JANUSGRAPH['janusgraph']['image'] }}
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: {{ JANUSGRAPH['projectname'] }}_janusgraph_pod_srv01.process
+    resources:
+      requests:
+        memory: {{ JANUSGRAPH['janusgraph']['resources']['requests']['memory'] }}
+        cpu: {{ JANUSGRAPH['janusgraph']['resources']['requests']['cpu'] }}
+      limits:
+        memory: {{ JANUSGRAPH['janusgraph']['resources']['limits']['memory'] }}
+        cpu: {{ JANUSGRAPH['janusgraph']['resources']['limits']['cpu'] }}
+    ports:
+    {%- if JANUSGRAPH['janusgraph']['port']['nonencrypted']['bind'] %}
+    - containerPort: {{ JANUSGRAPH['janusgraph']['port']['nonencrypted']['container'] }}
+      hostPort: {{ JANUSGRAPH['janusgraph']['port']['nonencrypted']['host'] }}
+      hostIP: {{ JANUSGRAPH['janusgraph']['port']['nonencrypted']['ip'] }}
+      protocol: {{ JANUSGRAPH['janusgraph']['port']['nonencrypted']['protocol'] }}
+    {%- endif %}
+    env:
+      - name: JANUS_SERVER_TIMEOUT
+        valueFrom:
+          configMapKeyRef:
+            name: janusgraph-configmap
+            key: janusgraph.janus_server_timeout
+      - name: JANUS_STORAGE_TIMEOUT
+        valueFrom:
+          configMapKeyRef:
+            name: janusgraph-configmap
+            key: janusgraph.janus_storage_timeout
+    volumeMounts:
+    - mountPath: /var/lib/janusgraph3
+      name: janusgraph-data
+      readOnly: false
+    - mountPath: /etc/opt/janusgraph/janusgraph.properties
+      name: janusgraph-config-properties
+      readOnly: true
+    - mountPath: /etc/opt/janusgraph/gremlin-server.yaml
+      name: janusgraph-config-gremlin-server
+      readOnly: true
+  volumes:
+  - name: janusgraph-data
+    persistentVolumeClaim:
+      claimName: {{ JANUSGRAPH['projectname'] }}-janusgraph-srv01-data
+  - name: janusgraph-config-properties
+    hostPath:
+      path: {{ JANUSGRAPH['rootdir'] }}/janusgraph.properties
+  - name: janusgraph-config-gremlin-server
+    hostPath:
+      path: {{ JANUSGRAPH['rootdir'] }}/gremlin-server.yaml
