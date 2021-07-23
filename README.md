@@ -10,18 +10,18 @@ SaltStack Formula for [JanusGraph](https://janusgraph.org/).
 ## Available states
 
 - [`janusgraph`](#janusgraph)
-- [`janusgraph.config`](#janusgraph.config)
-- [`janusgraph.config.clean`](#janusgraph.config.clean)
-- [`janusgraph.selinux`](#janusgraph.selinux)
-- [`janusgraph.selinux.clean`](#janusgraph.selinux.clean)
-- [`janusgraph.podman`](#janusgraph.podman)
-- [`janusgraph.podman.image`](#janusgraph.podman.image)
-- [`janusgraph.podman.image.clean`](#janusgraph.podman.image.clean)
-- [`janusgraph.podman.deploy`](#janusgraph.podman.deploy)
-- [`janusgraph.podman.destroy`](#janusgraph.podman.destroy)
-- [`janusgraph.podman.volume.clean`](#janusgraph.podman.volume.clean)
-- [`janusgraph.podman.clean`](#janusgraph.podman.clean)
-- [`janusgraph.clean`](#janusgraph.clean)
+- [`janusgraph.config`](#janusgraphconfig)
+- [`janusgraph.config.clean`](#janusgraphconfigclean)
+- [`janusgraph.selinux`](#janusgraphselinux)
+- [`janusgraph.selinux.clean`](#janusgraphselinuxclean)
+- [`janusgraph.podman`](#janusgraphpodman)
+- [`janusgraph.podman.image`](#janusgraphpodmanimage)
+- [`janusgraph.podman.image.clean`](#janusgraphpodmanimageclean)
+- [`janusgraph.podman.deploy`](#janusgraphpodmandeploy)
+- [`janusgraph.podman.destroy`](#janusgraphpodmandestroy)
+- [`janusgraph.podman.volume.clean`](#janusgraphpodmanvolumeclean)
+- [`janusgraph.podman.clean`](#janusgraphpodmanclean)
+- [`janusgraph.clean`](#janusgraphclean)
 
 
 ### `janusgraph`
