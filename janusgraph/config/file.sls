@@ -55,3 +55,15 @@ JANUSGRAPH-selinux-policy-file-managed:
     - template: jinja
     - context:
         JANUSGRAPH: {{ JANUSGRAPH | json }}
+
+JANUSGRAPH-seccomp-file-managed:
+  file.managed:
+    - name: {{ JANUSGRAPH.rootdir }}/seccomp/seccomp.json
+    - source: {{ files_switch(['seccomp.json']) }}
+    - mode: 644
+    - user: {{ JANUSGRAPH.hostuser.name }}
+    - group: {{ JANUSGRAPH.hostuser.group }}
+    - makedirs: True
+    - template: jinja
+    - context:
+        JANUSGRAPH: {{ JANUSGRAPH | json }}
