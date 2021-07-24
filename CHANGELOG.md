@@ -1,5 +1,22 @@
 # Changelog
 
+### [1.1.1](https://github.com/extra2000/janusgraph-formula/compare/v1.1.0...v1.1.1) (2021-07-24)
+
+
+### Fixes
+
+* **podman-network:** fix Podman network doesn't properly isolated per project name ([dcb008b](https://github.com/extra2000/janusgraph-formula/commit/dcb008b28dbe660fc576d8c3036df561c8acc932))
+
+
+### Code Refactoring
+
+* **podman-network:** rename Podman network `.conflist` file ([36df0c9](https://github.com/extra2000/janusgraph-formula/commit/36df0c9ca31508a0c6e22e0cf9ef1eb3e8af8abd))
+
+
+### Documentations
+
+* **README:** add Section Prerequisites ([c7b26ac](https://github.com/extra2000/janusgraph-formula/commit/c7b26ac02eb4336d7e040a4973545a21d7ba1d11))
+
 ## [1.1.0](https://github.com/extra2000/janusgraph-formula/compare/v1.0.0...v1.1.0) (2021-07-23)
 
 
