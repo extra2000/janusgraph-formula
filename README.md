@@ -7,6 +7,11 @@
 SaltStack Formula for [JanusGraph](https://janusgraph.org/).
 
 
+## Prerequisites
+
+Make sure you have Podman `v3.0.1` and above installed.
+
+
 ## Available states
 
 - [`janusgraph`](#janusgraph)
