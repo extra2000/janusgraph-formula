@@ -7,6 +7,6 @@
 
 JANUSGRAPH-pod-present:
   cmd.run:
-    - name: podman play kube --network=janusgraphnet --configmap janusgraph-configmap.yaml --seccomp-profile-root {{ JANUSGRAPH['rootdir'] }}/seccomp janusgraph-pod.yaml
+    - name: podman play kube --network={{ JANUSGRAPH.pod.network.domain_name }} --configmap janusgraph-configmap.yaml --seccomp-profile-root {{ JANUSGRAPH['rootdir'] }}/seccomp janusgraph-pod.yaml
     - cwd: {{ JANUSGRAPH.rootdir }}
     - runas: {{ JANUSGRAPH.hostuser.name }}

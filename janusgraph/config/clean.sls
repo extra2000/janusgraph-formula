@@ -12,7 +12,7 @@ JANUSGRAPH-rootdir-absent:
 JANUSGRAPH-podman-network-file-absent:
   file.absent:
     {%- if JANUSGRAPH.hostuser.name == 'root' %}
-    - name: /etc/cni/net.d/podman-network-janusgraphnet.conflist
+    - name: /etc/cni/net.d/podman-network-{{ JANUSGRAPH.pod.network.domain_name }}.conflist
     {%- else %}
-    - name: /home/{{ JANUSGRAPH.hostuser.name }}/.config/cni/net.d/podman-network-janusgraphnet.conflist
+    - name: /home/{{ JANUSGRAPH.hostuser.name }}/.config/cni/net.d/podman-network-{{ JANUSGRAPH.pod.network.domain_name }}.conflist
     {%- endif %}

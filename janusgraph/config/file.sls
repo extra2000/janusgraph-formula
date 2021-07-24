@@ -31,9 +31,9 @@ JANUSGRAPH-{{ container_file }}-file-managed:
 JANUSGRAPH-podman-network-file-managed:
   file.managed:
     {%- if JANUSGRAPH.hostuser.name == 'root' %}
-    - name: /etc/cni/net.d/podman-network-janusgraphnet.conflist
+    - name: /etc/cni/net.d/podman-network-{{ JANUSGRAPH.pod.network.domain_name }}.conflist
     {%- else %}
-    - name: /home/{{ JANUSGRAPH.hostuser.name }}/.config/cni/net.d/podman-network-janusgraphnet.conflist
+    - name: /home/{{ JANUSGRAPH.hostuser.name }}/.config/cni/net.d/podman-network-{{ JANUSGRAPH.pod.network.domain_name }}.conflist
     {%- endif %}
     - source: {{ files_switch(['podman-network-janusgraphnet.conflist']) }}
     - mode: 644
