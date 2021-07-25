@@ -21,6 +21,7 @@ values:
   janusgraph:
     image: docker.io/janusgraph/janusgraph:0.5.3
     restart_policy: OnFailure
+    use_seccomp: true
     port:
       nonencrypted:
         container: 8182

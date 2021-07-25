@@ -11,8 +11,14 @@
 {%- set network_param = '--network="' + JANUSGRAPH.pod.network.domain_name + '"' %}
 {%- endif %}
 
+{%- if JANUSGRAPH.janusgraph.use_seccomp %}
+{%- set seccomp_param = '--seccomp-profile-root="' + JANUSGRAPH.rootdir + '/seccomp"' %}
+{%- else %}
+{%- set seccomp_param = '' %}
+{%- endif %}
+
 JANUSGRAPH-pod-present:
   cmd.run:
-    - name: podman play kube {{ network_param }} --configmap janusgraph-configmap.yaml --seccomp-profile-root {{ JANUSGRAPH['rootdir'] }}/seccomp janusgraph-pod.yaml
+    - name: podman play kube {{ network_param }} --configmap janusgraph-configmap.yaml {{ seccomp_param }} janusgraph-pod.yaml
     - cwd: {{ JANUSGRAPH.rootdir }}
     - runas: {{ JANUSGRAPH.hostuser.name }}

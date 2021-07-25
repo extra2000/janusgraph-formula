@@ -19,6 +19,7 @@ janusgraph:
     janus_storage_timeout: 60
     janusgraph:
       restart_policy: OnFailure
+      use_seccomp: true
       port:
         nonencrypted:
           container: 8182
