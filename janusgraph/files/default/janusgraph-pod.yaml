@@ -6,8 +6,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  {%- if JANUSGRAPH.janusgraph.use_seccomp %}
   annotations:
     seccomp.security.alpha.kubernetes.io/pod: localhost/seccomp.json
+  {%- endif %}
   labels:
     app: {{ JANUSGRAPH['projectname'] }}-janusgraph-pod
   name: {{ JANUSGRAPH['projectname'] }}-janusgraph-pod
