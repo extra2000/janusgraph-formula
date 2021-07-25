@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/extra2000/janusgraph-formula/compare/v1.1.1...v1.2.0) (2021-07-25)
+
+
+### Features
+
+* **network:** add option to use Podman default network ([4adc0d7](https://github.com/extra2000/janusgraph-formula/commit/4adc0d7f97989e987c7ffde5f72ceb18eb7e0959))
+* **seccomp:** add option to disable SecComp ([5ea5049](https://github.com/extra2000/janusgraph-formula/commit/5ea50492a95d5bfde00fe2625d9aa21181e365ef))
+
 ### [1.1.1](https://github.com/extra2000/janusgraph-formula/compare/v1.1.0...v1.1.1) (2021-07-24)
 
 
